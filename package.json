@@ -1,0 +1,24 @@
+{
+  "name": "aceeditor",
+  "version": "1.0.0",
+  "description": "Test for electron app wrapping ace editor",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "keywords": [
+    "ace",
+    "python",
+    "electron"
+  ],
+  "author": "Unnikrishnan R",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^5.0.4",
+    "electron-builder": "^20.44.4"
+  },
+  "dependencies": {
+    "sqlite3": "^4.0.9"
+  }
+}
