@@ -2,6 +2,34 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
+//From https://gist.github.com/tedmiston/5935757
+var net = require('net');
+
+var server = net.createServer(function(socket) {
+	socket.write('Echo server Unni!\r\n');
+	//socket.pipe(socket);
+
+  socket.on('connect', function(data) {
+  	console.log('Connected with client');
+  	//client.destroy(); // kill client after server's response
+  });
+
+  socket.on('data', function(data) {
+  	console.log('Received data from client : ' + data);
+  	//client.destroy(); // kill client after server's response
+  });
+
+  socket.on('close', function(data) {
+    console.log('Client closed connection');
+    //client.destroy(); // kill client after server's response
+  });
+
+});
+
+server.listen(1337, '127.0.0.1');
+
+
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -11,10 +39,14 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 720,
+		frame: true,
+		title: "PyBlockly",
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
   })
+
+	mainWindow.setMenuBarVisibility(false);
   //require('./server')
   //require('./client')
 

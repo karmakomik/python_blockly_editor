@@ -1,5 +1,5 @@
 //From https://gist.github.com/tedmiston/5935757
-var net = require('net');
+/*var net = require('net');
 
 var client = new net.Socket();
 client.connect(1337, '127.0.0.1', function() {
@@ -15,4 +15,4 @@ client.on('data', function(data) {
 client.on('close', function() {
 	console.log('Connection closed');
   client.destroy();
-});
+});*/

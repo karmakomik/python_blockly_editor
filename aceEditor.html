@@ -48,12 +48,14 @@ else:
     editor.setOptions({
       enableBasicAutocompletion: true
     });
-    editor.setTheme("ace/theme/dracula");
+    editor.setTheme("ace/theme/github");
+    editor.setFontSize("20px");
     editor.session.setMode("ace/mode/python");
     editor.commands.on("afterExec", function (e) {
     if (e.command.name == "insertstring" && /^[\w.]$/.test(e.args)) {
         editor.execCommand("startAutocomplete");
     }
+
 });
 </script>
 

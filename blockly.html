@@ -5,37 +5,94 @@
   <title>Blockly Demo: Fixed Blockly</title>
   <script src="Blockly/blockly_compressed.js"></script>
   <script src="Blockly/blocks_compressed.js"></script>
+  <script src="Blockly/python_compressed.js"></script>
   <script src="Blockly/en.js"></script>
   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
     body {
       background-color: #fff;
       font-family: sans-serif;
+      overflow: hidden;
     }
     h1 {
       font-weight: normal;
       font-size: 140%;
     }
+    table {
+    height: 100%;
+    width: 100%;
+    }
+    #blocklyArea {
+      height: 99%;
+    }
   </style>
 </head>
 <body>
-  <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+  <table>
+  <tr>
+    <td id="blocklyArea">
+    </td>
+  </tr>
+</table>
 
-  <xml id="toolbox" style="display: none">
-    <block type="controls_if"></block>
-    <block type="logic_compare"></block>
-    <block type="controls_repeat_ext"></block>
-    <block type="math_number">
-      <field name="NUM">123</field>
-    </block>
-    <block type="math_arithmetic"></block>
-    <block type="text"></block>
-    <block type="text_print"></block>
+  <div id="blocklyDiv" style="position: absolute"></div>
+
+  <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+    <category name="HMS">
+      <block type="hms_move_moveforward">
+        <field name="moveForward">0</field>
+      </block>
+      <block type="hms_move_turnleft">
+        <field name="left_angle">225</field>
+      </block>
+      <block type="hms_move_turnright">
+        <field name="left_angle">225</field>
+      </block>
+      <block type="hms_event_key_pressed">
+        <field name="keyList">left</field>
+      </block>
+      <block type="hms_event_run_program"/>
+      <block type="hms_voxel_create_block"/>
+      <block type="hms_location_xyz"/>
+      <block type="hms_color_rgb">
+        <field name="red">0</field>
+        <field name="green">0</field>
+        <field name="blue">0</field>
+      </block>
+    </category>
+    <category name="Functions" colour="#995ba5" custom="PROCEDURE"/>
+    <category name="Variables" colour="#a55b80" custom="VARIABLE"/>
   </xml>
 
   <script>
-    var demoWorkspace = Blockly.inject('blocklyDiv',
-        {media: '../../media/',
-         toolbox: document.getElementById('toolbox')});
+      var blocklyArea = document.getElementById('blocklyArea');
+      var blocklyDiv = document.getElementById('blocklyDiv');
+      var demoWorkspace = Blockly.inject(blocklyDiv,
+          {media: 'Blockly/media/',
+           toolbox: document.getElementById('toolbox')});
+      var onresize = function(e) {
+        // Compute the absolute coordinates and dimensions of blocklyArea.
+        var element = blocklyArea;
+        var x = 0;
+        var y = 0;
+        do {
+          x += element.offsetLeft;
+          y += element.offsetTop;
+          element = element.offsetParent;
+        } while (element);
+        // Position blocklyDiv over blocklyArea.
+        blocklyDiv.style.left = x + 'px';
+        blocklyDiv.style.top = y + 'px';
+        blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
+        blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+        Blockly.svgResize(demoWorkspace);
+      };
+      window.addEventListener('resize', onresize, false);
+      onresize();
+      Blockly.svgResize(demoWorkspace);
   </script>
 
 </body>
