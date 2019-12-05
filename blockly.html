@@ -41,7 +41,7 @@
   <div id="blocklyDiv" style="position: absolute"></div>
 
   <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-    <category name="HMS">
+    <category name="Movement" colour="#5ba58c">
       <block type="hms_move_moveforward">
         <field name="moveForward">0</field>
       </block>
@@ -51,29 +51,295 @@
       <block type="hms_move_turnright">
         <field name="left_angle">225</field>
       </block>
+    </category>
+    <category name="Paint" colour="#5ba55b">
+      <block type="hms_color_rgb"></block>
+      <block type="hms_color_list">
+        <field name="pen_color">#ffcccc</field>
+      </block>
+      <block type="hms_pen_set_color"></block>
+      <block type="hms_pen_size">
+        <field name="pen_size">1</field>
+      </block>
+      <block type="hms_pen_clear"></block>
+      <block type="hms_pen_up"></block>
+      <block type="hms_pen_down"></block>
+    </category>
+    <category name="Looks" colour="#995ba5">
+      <block type="hms_looks_say">
+        <field name="say">text</field>
+      </block>
+      <block type="hms_looks_say_seconds">
+        <field name="say_text">text</field>
+        <field name="seconds">0</field>
+      </block>
+      <block type="hms_looks_show"></block>
+      <block type="hms_looks_hide"></block>
+    </category>
+    <category name="Cubes" colour="#9fa55b">
+      <block type="hms_voxel_create_block"></block>
+      <block type="hms_location_xyz"></block>
+    </category>
+    <category name="Events" colour="#745ba5">
       <block type="hms_event_key_pressed">
         <field name="keyList">left</field>
       </block>
-      <block type="hms_event_run_program"/>
-      <block type="hms_voxel_create_block"/>
-      <block type="hms_location_xyz"/>
-      <block type="hms_color_rgb">
-        <field name="red">0</field>
-        <field name="green">0</field>
-        <field name="blue">0</field>
+      <block type="hms_event_run_program"></block>
+    </category>
+    <category name="Loops" colour="#5ba55b">
+      <block type="controls_repeat_ext">
+        <value name="TIMES">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="controls_whileUntil">
+        <field name="MODE">WHILE</field>
+      </block>
+      <block type="controls_for">
+        <field name="VAR" id="P9TrOGrUfj}ZHWNyT^L?">i</field>
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="BY">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="controls_forEach">
+        <field name="VAR" id="9][P7T_F{-aL-/?L;a{C">j</field>
       </block>
     </category>
-    <category name="Functions" colour="#995ba5" custom="PROCEDURE"/>
-    <category name="Variables" colour="#a55b80" custom="VARIABLE"/>
+    <category name="Math" colour="#a55b80">
+      <block type="math_number">
+        <field name="NUM">0</field>
+      </block>
+      <block type="math_arithmetic">
+        <field name="OP">ADD</field>
+        <value name="A">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="B">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_single">
+        <field name="OP">ROOT</field>
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">9</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_trig">
+        <field name="OP">SIN</field>
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">45</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constant">
+        <field name="CONSTANT">PI</field>
+      </block>
+      <block type="math_number_property">
+        <mutation divisor_input="false"></mutation>
+        <field name="PROPERTY">EVEN</field>
+        <value name="NUMBER_TO_CHECK">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_round">
+        <field name="OP">ROUND</field>
+        <value name="NUM">
+          <shadow type="math_number">
+            <field name="NUM">3.1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_on_list">
+        <mutation op="SUM"></mutation>
+        <field name="OP">SUM</field>
+      </block>
+      <block type="math_modulo">
+        <value name="DIVIDEND">
+          <shadow type="math_number">
+            <field name="NUM">64</field>
+          </shadow>
+        </value>
+        <value name="DIVISOR">
+          <shadow type="math_number">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_constrain">
+        <value name="VALUE">
+          <shadow type="math_number">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="LOW">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="HIGH">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_int">
+        <value name="FROM">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="TO">
+          <shadow type="math_number">
+            <field name="NUM">100</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="math_random_float"></block>
+    </category>
+    <category name="Logic" colour="#5b80a5">
+      <block type="controls_if"></block>
+      <block type="logic_compare">
+        <field name="OP">EQ</field>
+      </block>
+      <block type="logic_operation">
+        <field name="OP">AND</field>
+      </block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean">
+        <field name="BOOL">TRUE</field>
+      </block>
+      <block type="logic_null"></block>
+      <block type="logic_ternary"></block>
+    </category>
+    <category name="Text" colour="#5ba58c">
+      <block type="text">
+        <field name="TEXT"></field>
+      </block>
+      <block type="text_join">
+        <mutation items="2"></mutation>
+      </block>
+      <block type="text_append">
+        <field name="VAR" id="/_5@x@z_hhpaUd*KZBwV">item</field>
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_length">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_isEmpty">
+        <value name="VALUE">
+          <shadow type="text">
+            <field name="TEXT"></field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_indexOf">
+        <field name="END">FIRST</field>
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR" id="Dyx/PSH6$2wgU%EeMCYT">text</field>
+          </block>
+        </value>
+        <value name="FIND">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_charAt">
+        <mutation at="true"></mutation>
+        <field name="WHERE">FROM_START</field>
+        <value name="VALUE">
+          <block type="variables_get">
+            <field name="VAR" id="Dyx/PSH6$2wgU%EeMCYT">text</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_getSubstring">
+        <mutation at1="true" at2="true"></mutation>
+        <field name="WHERE1">FROM_START</field>
+        <field name="WHERE2">FROM_START</field>
+        <value name="STRING">
+          <block type="variables_get">
+            <field name="VAR" id="Dyx/PSH6$2wgU%EeMCYT">text</field>
+          </block>
+        </value>
+      </block>
+      <block type="text_changeCase">
+        <field name="CASE">UPPERCASE</field>
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_trim">
+        <field name="MODE">BOTH</field>
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_print">
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="text_prompt_ext">
+        <mutation type="TEXT"></mutation>
+        <field name="TYPE">TEXT</field>
+        <value name="TEXT">
+          <shadow type="text">
+            <field name="TEXT">abc</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category name="Functions" colour="#a5745b" custom="PROCEDURE"></category>
+    <category name="Variables" colour="#a55b80" custom="VARIABLE"></category>
   </xml>
 
   <script>
       var blocklyArea = document.getElementById('blocklyArea');
       var blocklyDiv = document.getElementById('blocklyDiv');
-      var demoWorkspace = Blockly.inject(blocklyDiv,
+      var workspace = Blockly.inject(blocklyDiv,
           {media: 'Blockly/media/',
            toolbox: document.getElementById('toolbox')});
-      var onresize = function(e) {
+      var onresize = function(e)
+      {
         // Compute the absolute coordinates and dimensions of blocklyArea.
         var element = blocklyArea;
         var x = 0;
@@ -88,11 +354,65 @@
         blocklyDiv.style.top = y + 'px';
         blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
         blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
-        Blockly.svgResize(demoWorkspace);
+        Blockly.svgResize(workspace);
       };
       window.addEventListener('resize', onresize, false);
       onresize();
-      Blockly.svgResize(demoWorkspace);
+      Blockly.svgResize(workspace);
+
+      function generateCode()
+      {
+          _currCode = Blockly.Python.workspaceToCode(workspace);
+          return _currCode;
+      }
+
+      function returnWorkspaceXML()
+      {
+          var xml = Blockly.Xml.workspaceToDom(workspace);
+          var _currWorkspaceXML = Blockly.Xml.domToText(xml);
+          return _currWorkspaceXML;
+      }
+
+      function onBlockAdd(event)
+      {
+          if (event.type == Blockly.Events.CREATE)
+          {
+            //alert('BLock added - ' + workspace.getBlockById(event.blockId)); "hms_event_key_pressed"
+            if(workspace.getBlocksByType('hms_event_key_pressed').length > 2)
+            {
+              console.log('Cant add more than one event key press fns');
+              workspace.undo(false);
+            }
+            console.log(workspace.getBlocksByType('hms_event_key_pressed').length);
+            //workspace.removeChangeListener(onFirstComment);
+          }
+          if (event.type == Blockly.Events.BLOCK_MOVE)
+          {
+            console.log('selected : ' + Blockly.selected.type + 'newParentId: ' + event.newParentId + ', newInputName: ' + event.newInputName);
+            //console.log(event.newInputName === 'undefined');
+            //console.log(typeof event.newInputName === 'undefined');
+
+            if(Blockly.selected.type === 'hms_location_xyz')
+            {
+              if(!(typeof event.newInputName === 'undefined') && event.newInputName != 'location')
+              {
+                console.log('Location block added to incorrect location');
+                workspace.undo(false);
+              }
+            }
+
+            if(Blockly.selected.type === 'hms_color_rgb')
+            {
+              if(!(typeof event.newInputName === 'undefined') && event.newInputName != 'color')
+              {
+                console.log('Location block added to incorrect location');
+                workspace.undo(false);
+              }
+            }
+          }
+      }
+      workspace.addChangeListener(onBlockAdd);
+
   </script>
 
 </body>

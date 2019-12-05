@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>PyBlockly</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./Dependencies/bootstrap-4.3.1-dist/css/bootstrap.min.css" />
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+
+    <!-- Bootstrap Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="./Dependencies/jquery-3.4.1.min.js"></script>
+    <script src="./Dependencies/popper.min.js"></script>
+    <script src="./Dependencies/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <style>
+      .starter-template
+      {
+        padding: 2.5rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+          <a class="navbar-brand" href="#">PyBlockly</a>
+          <input class="btn btn-warning ml-5" type="button" id="sendCode" value="Send Code">
+          <input class="btn btn-warning ml-5" type="button" id="closeEditor" value="Close Editor">
+    </nav>
+
+    <main role="main" class="container">
+        <div class="starter-template">
+          <!--<h1>Bootstrap starter template</h1>
+          <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>-->
+        </div>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" id = "blocksFrame" src="./blockly.html" allowfullscreen></iframe>
+        </div>
+    </main>
+
+    <script>
+        const { ipcRenderer } = require('electron')
+        console.log(ipcRenderer.sendSync('synchronous-message', 'ping')) // prints "pong"
+
+        ipcRenderer.on('asynchronous-reply', (event, arg) => {
+        console.log(arg) // prints "pong"
+        })
+
+        document.getElementById("sendCode").onclick = function ()
+        {
+          ipcRenderer.send('asynchronous-message', 'CODE_BEGIN\n')
+          currCode = document.getElementById('blocksFrame').contentWindow.generateCode();
+          ipcRenderer.send('asynchronous-message', currCode)
+          ipcRenderer.send('asynchronous-message', 'CODE_END\n')
+        }
+
+        document.getElementById("closeEditor").onclick = function ()
+        {
+          currWorkspaceXML = document.getElementById('blocksFrame').contentWindow.returnWorkspaceXML();
+          console.log(currWorkspaceXML)
+
+        }
+
+    </script>
+  </body>
+</html>
